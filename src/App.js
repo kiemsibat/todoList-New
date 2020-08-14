@@ -4,9 +4,15 @@ import TaskForm from "./components/TaskForm";
 import Control from "./components/Control";
 import TaskList from "./components/TaskList";
 function App() {
-
+  const onSubmit = (data) => {
+  
+    console.log(data)
+  }
   const [task,setTask] = useState([]);
-
+  const [isShow,setIsShow] = useState(false)
+  const eltTaskForm = isShow ? <TaskForm onSubmit={onSubmit} /> : '';
+  
+ 
   const onHandleData = () =>{
     let tasks = [
       {
@@ -34,6 +40,9 @@ function App() {
       setTask(tasks)
   },[])
 
+  const addForm = () => {
+    setIsShow(!isShow);
+  }
   return (  
     <div className="container">
       <div className="text-center">
@@ -41,13 +50,12 @@ function App() {
         <hr />
       </div>
       <div className="row">
-        <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <div className={isShow ? 'col-xs-4' : ''}>
           {/* taskForm */}
-          <TaskForm />
+          {eltTaskForm}
         </div>
-        <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-          <button type="button" className="btn btn-primary">
-        
+        <div className={isShow ? 'col-xs-8' : 'col-xs-12'}>
+          <button onClick={addForm} type="button" className="btn btn-primary">
             Thêm Công Việc
           </button>
           <button onClick={onHandleData} type="button" className="btn btn-warning">

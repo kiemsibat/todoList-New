@@ -1,9 +1,12 @@
-import React from 'react';
+import React,{useState} from 'react';
 
 const TaskItem = (props) => {
+
+    const [displayConfig,setDisplayConfig] = useState([])
    const  onHandleClick = () => {
      console.log(props.task);
    }
+  
     return(
         <>
         <tr onClick={onHandleClick}>
@@ -16,7 +19,7 @@ const TaskItem = (props) => {
                     </span>
                   </td>
                   <td className="text-center">
-                    <button type="button" className="btn btn-warning">
+                    <button  type="button" className="btn btn-warning">
                       <span className="fa fa-pencil mr-5" />Sửa
                     </button>
                     &nbsp;
